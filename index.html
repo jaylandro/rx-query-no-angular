@@ -1,0 +1,29 @@
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+</head>
+
+<body>
+	<main>
+		<h1>Rx-Query without Angular</h1>
+
+		<p>
+			This is an example of using RXjs
+			<a href="https://rxjs.dev/api/fetch/fromFetch">fromFetch</a> to make
+			HTTP calls with caching and retries by
+			<a href="https://github.com/timdeschryver/rx-query">rx-quey</a>, no
+			Angular needed
+		</p>
+
+		<div class="users"></div>
+
+		<nav>
+			<button id="refresh" onclick="queryActions.refresh()">Refresh Query</button>
+			<button id="broken" onclick="queryActions.broken()">Simulate Broken</button>
+			<button id="param">Simulate Param</button>
+		</nav>
+	</main>
+</body>
+
+</html>

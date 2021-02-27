@@ -1,0 +1,9 @@
+{
+  "name": "rxjs",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "rx-query": "^1.0.1",
+    "rxjs": "latest"
+  }
+}
