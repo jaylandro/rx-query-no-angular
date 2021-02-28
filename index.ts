@@ -2,10 +2,13 @@ import { fromFetch } from "rxjs/fetch";
 import { query, refreshQuery } from "rx-query";
 import "./style.css";
 
-const users$ = query("user", 1, () =>
-  fromFetch(`https://api.github.com/users?per_page=5`, {
-    selector: res => res.json()
-  })
+let users$ = query("user", () =>
+  fromFetch(
+    `https://landro.dev/.netlify/functions/slow?url=https://api.github.com/users?per_page=5`,
+    {
+      selector: res => res.json()
+    }
+  )
 );
 
 const generateTemplate = data => {
@@ -42,5 +45,7 @@ globalThis.queryActions = {
     refreshQuery("user");
   },
 
-  broken() {}
+  broken() {
+    let users$ = null;
+  }
 };
