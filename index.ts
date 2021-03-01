@@ -1,5 +1,5 @@
 import { fromFetch } from "rxjs/fetch";
-import { query, refreshQuery } from "rx-query";
+import { query, refreshQuery, resetQueryCache } from "rx-query";
 import "./style.css";
 
 let users$ = query("user", () =>
@@ -17,13 +17,13 @@ const generateTemplate = data => {
 
   return `
     <h2>Status: ${data.status} ${retries}</h2>
-    
+
     <ul>
       ${content
         .map(
-          item =>
+          ({ avatar_url, login, html_url }) =>
             `<li>
-              <img src="${item.avatar_url}" width ="50" />${item.login}
+              <img src="${avatar_url}" width ="50" />${login} ${html_url}
             </li>`
         )
         .join("")}
@@ -45,7 +45,8 @@ globalThis.queryActions = {
     refreshQuery("user");
   },
 
-  broken() {
-    let users$ = null;
+  resetCache() {
+    render({ status: "loading" });
+    resetQueryCache();
   }
 };
